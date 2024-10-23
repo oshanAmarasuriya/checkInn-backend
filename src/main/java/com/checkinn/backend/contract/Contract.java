@@ -5,18 +5,26 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
-
+@Entity
+@Table(name = "contract")
 public class Contract {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long contractId;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name="hotelId",unique = true)
     private Hotel hotel;
     private int addedAgentId;
 
 
+    @Column(name="start_date")
+    @Temporal(TemporalType.DATE)
     private Date startDate;
 
 
+    @Column(name="end_date")
+    @Temporal(TemporalType.DATE)
     private Date endDate;
 
     public Contract() {
