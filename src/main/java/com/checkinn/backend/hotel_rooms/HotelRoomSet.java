@@ -1,19 +1,27 @@
 package com.checkinn.backend.hotel_rooms;
 
 import com.checkinn.backend.hotel.Hotel;
+import jakarta.persistence.*;
 
-
+@Entity
+@Table(name="hotel_room_set")
 public class HotelRoomSet {
 
-
+    //Fields
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long hotelRoomSetId; // Primary Key field
 
+    @ManyToOne
+    @JoinColumn(name="hotel_id")
     private Hotel hotel; //Reference to Hotel entity
 
     private String roomType;
     private int maxAdults;
     private int numOfRooms;
 
+    //@Column(name = "price_per_adult", precision = 8, scale = 2)
+    @Column(name = "price_per_adult")
     private double pricePerAdult;
 
     //Getters and setters
