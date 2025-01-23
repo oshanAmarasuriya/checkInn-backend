@@ -3,6 +3,8 @@ package com.checkinn.backend.reserv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReservationService {
 
@@ -15,5 +17,9 @@ public class ReservationService {
         // Business logic to handle reservation placement
         repo.save(reservation);
         return reservation;
+    }
+
+    public List<Reservation> getReservationsByHotelId(Long h_id){
+        return repo.findReservByHotelId(h_id);
     }
 }
