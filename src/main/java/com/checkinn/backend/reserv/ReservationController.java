@@ -27,4 +27,13 @@ public class ReservationController {
 
     @GetMapping("/byhotel/{id}")
     public ResponseEntity<List<Reservation>> findReservByHotelId(@PathVariable long id) {return new ResponseEntity<>(reservationService.getReservationsByHotelId(id), HttpStatus.OK);}
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteReservation(@PathVariable Long id) {
+        reservationService.deleteReservationById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
+
 }

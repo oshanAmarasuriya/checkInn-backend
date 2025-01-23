@@ -29,5 +29,14 @@ public class ReservationService {
         return repo.findReservByHotelId(h_id);
     }
 
+    @Transactional
+    public void deleteReservationById(Long id) {
+        if (repo.existsById(id)) {
+            repo.deleteById(id);
+        } else {
+            throw new IllegalArgumentException("Reservation with id " + id + " does not exist.");
+        }
+    }
+
 
 }
