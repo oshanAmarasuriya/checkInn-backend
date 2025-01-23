@@ -13,7 +13,10 @@ public class Reservation {
     private String guestName;
 
     @Column(nullable = false)
-    private String hotelName;
+    private Long hotelId;
+
+    @Column(nullable = false)
+    private Long hotelRoomSetId;
 
     @Column(nullable = false)
     private int numberOfGuests;
@@ -25,6 +28,7 @@ public class Reservation {
     private String checkOutDate;
 
     // Getters and Setters
+
 
     public Long getId() {
         return id;
@@ -42,12 +46,20 @@ public class Reservation {
         this.guestName = guestName;
     }
 
-    public String getHotelName() {
-        return hotelName;
+    public Long getHotelId() {
+        return hotelId;
     }
 
-    public void setHotelName(String hotelName) {
-        this.hotelName = hotelName;
+    public void setHotelId(Long hotelId) {
+        this.hotelId = hotelId;
+    }
+
+    public Long getHotelRoomSetId() {
+        return hotelRoomSetId;
+    }
+
+    public void setHotelRoomSetId(Long hotelRoomSetId) {
+        this.hotelRoomSetId = hotelRoomSetId;
     }
 
     public int getNumberOfGuests() {
