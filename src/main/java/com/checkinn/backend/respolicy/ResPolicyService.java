@@ -1,8 +1,8 @@
-package com.checkinn.backend.contract;
+package com.checkinn.backend.respolicy;
 
 
-import com.checkinn.backend.hotel.Hotel;
-import com.checkinn.backend.hotel_rooms.HotelRoomSet;
+import com.checkinn.backend.hotelunit.HotelUnit;
+import com.checkinn.backend.roomunits.RoomUnits;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
@@ -17,35 +17,35 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class ContractService {
+public class ResPolicyService {
     @PersistenceContext
     private EntityManager entityManager;
 
 
-    private final ContractRepository contractRepo;
+    private final ResPolicyRepository contractRepo;
 
     @Autowired
-    public ContractService(ContractRepository c) {
+    public ResPolicyService(ResPolicyRepository c) {
         this.contractRepo = c;
     }
 
     @Transactional
-    public ResponseEntity<String> saveContract(Contract contract) {
+    public ResponseEntity<String> saveContract(ResPolicy contract) {
         /* Save contracts along with related hotels and hotel rooms */
-        Hotel hotel = contract.getHotel();
-        List<HotelRoomSet> rooms = hotel.getRooms();
+        HotelUnit hotel = contract.getHotel();
+        List<RoomUnits> rooms = hotel.getRooms();
         // Ensuring bidirectional association setup between entities - Contract, Hotel and HotelRoomSet
         if (hotel != null) {
             hotel.setContract(contract);
             if (rooms != null) {
                 hotel.setRooms(rooms);
-                for (HotelRoomSet room : rooms) {
+                for (RoomUnits room : rooms) {
                     room.setHotel(hotel);
                 }
             }
         }
         //Save data to db table
-        Contract savedContract = contractRepo.save(contract);
+        ResPolicy savedContract = contractRepo.save(contract);
         //Generating response
         //If saving process is success...
         if (savedContract != null && savedContract.getContractId() > 0) {
@@ -57,16 +57,16 @@ public class ContractService {
         return new ResponseEntity<>("{\"message\": \"" + message + "\"}", HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<List<ContractsDTO>> getContracts() {
+    public ResponseEntity<List<ResPolicyDTO>> getContracts() {
         //Returns a list of all existing contracts
-        ContractsDTO result;
-        List<ContractsDTO> resultList = new ArrayList<>();
+        ResPolicyDTO result;
+        List<ResPolicyDTO> resultList = new ArrayList<>();
         //Retrieve all contracts from db
-        List<Contract> contracts = contractRepo.findAll();
+        List<ResPolicy> contracts = contractRepo.findAll();
 
 
-        for (Contract c : contracts) {
-            result = new ContractsDTO();
+        for (ResPolicy c : contracts) {
+            result = new ResPolicyDTO();
             //Inserting data to DTO
             result.setContractId(c.getContractId());
             result.setHotelName(c.getHotel().getName());
@@ -83,7 +83,7 @@ public class ContractService {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    public ResponseEntity<List<ContractsDTO>> getExpiringContracts(){
+    public ResponseEntity<List<ResPolicyDTO>> getExpiringContracts(){
         final int period=7;
         Date today=new Date();
 
@@ -94,14 +94,14 @@ public class ContractService {
 
 
         @SuppressWarnings("unchecked")
-        List<Contract> contractList=contractRepo.findExpiringContracts(expireLimitDate);
+        List<ResPolicy> contractList=contractRepo.findExpiringContracts(expireLimitDate);
 
-        ContractsDTO result;
-        List<ContractsDTO> resultList = new ArrayList<>();
+        ResPolicyDTO result;
+        List<ResPolicyDTO> resultList = new ArrayList<>();
 
 
-        for (Contract c : contractList) {
-            result = new ContractsDTO();
+        for (ResPolicy c : contractList) {
+            result = new ResPolicyDTO();
             //Inserting data to DTO
             result.setContractId(c.getContractId());
             result.setHotelName(c.getHotel().getName());
@@ -117,7 +117,7 @@ public class ContractService {
     }
 
     public ResponseEntity<String> deleteContract(long id){
-        Contract delContract=entityManager.find(Contract.class,id);
+        ResPolicy delContract=entityManager.find(ResPolicy.class,id);
         if (delContract != null) {
             contractRepo.delete(delContract);
             String message = "Operation completed successfully";

@@ -1,6 +1,6 @@
 package com.checkinn.backend.config;
 
-import com.checkinn.backend.agent.AgentRepository;
+import com.checkinn.backend.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
     @RequiredArgsConstructor
     public class ApplicationConfig {
 
-        private final AgentRepository repository;
+        private final UserRepository repository;
 
 
         @Bean

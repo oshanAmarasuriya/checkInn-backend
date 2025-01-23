@@ -1,20 +1,20 @@
-package com.checkinn.backend.contract;
+package com.checkinn.backend.respolicy;
 
-import com.checkinn.backend.hotel.Hotel;
+import com.checkinn.backend.hotelunit.HotelUnit;
 import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "contract")
-public class Contract {
+public class ResPolicy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long contractId;
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="hotelId",unique = true)
-    private Hotel hotel;
+    private HotelUnit hotel;
     private int addedAgentId;
 
 
@@ -27,10 +27,10 @@ public class Contract {
     @Temporal(TemporalType.DATE)
     private Date endDate;
 
-    public Contract() {
+    public ResPolicy() {
     }
 
-    public Contract( Hotel hotel, int addedAgentId, Date startDate, Date endDate) {
+    public ResPolicy(HotelUnit hotel, int addedAgentId, Date startDate, Date endDate) {
         this.hotel = hotel;
         this.addedAgentId = addedAgentId;
         this.startDate = startDate;
@@ -45,11 +45,11 @@ public class Contract {
         this.contractId = contractId;
     }
 
-    public Hotel getHotel() {
+    public HotelUnit getHotel() {
         return hotel;
     }
 
-    public void setHotel(Hotel hotel) {
+    public void setHotel(HotelUnit hotel) {
         this.hotel = hotel;
     }
 

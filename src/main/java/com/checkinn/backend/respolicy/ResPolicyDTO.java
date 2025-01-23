@@ -1,14 +1,14 @@
-package com.checkinn.backend.contract;
+package com.checkinn.backend.respolicy;
 
-import com.checkinn.backend.hotel_rooms.HotelRoomSet;
-import com.checkinn.backend.hotel_rooms.RoomSetDTO;
+import com.checkinn.backend.roomunits.RoomUnits;
+import com.checkinn.backend.roomunits.RoomUnitsDTO;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 //Used to carry data for loading process of all contracts
-public class ContractsDTO {
+public class ResPolicyDTO {
 
     private Long contractId;
     private String hotelName;
@@ -16,7 +16,7 @@ public class ContractsDTO {
     private String contactNo;
     private Date endDate;
     private Date startDate;
-    private List<RoomSetDTO> hotelRooms;
+    private List<RoomUnitsDTO> hotelRooms;
 
     public Long getContractId() {
         return contractId;
@@ -66,15 +66,15 @@ public class ContractsDTO {
         this.startDate = startDate;
     }
 
-    public List<RoomSetDTO> getHotelRooms() {
+    public List<RoomUnitsDTO> getHotelRooms() {
         return hotelRooms;
     }
 
-    public void setHotelRooms(List<HotelRoomSet> hotelRooms) {
-        List<RoomSetDTO> roomSetDTOList=new ArrayList<>();
-        RoomSetDTO roomSetDTO;
-        for(HotelRoomSet hotelRoomSetItem: hotelRooms){
-            roomSetDTO=new RoomSetDTO();
+    public void setHotelRooms(List<RoomUnits> hotelRooms) {
+        List<RoomUnitsDTO> roomSetDTOList=new ArrayList<>();
+        RoomUnitsDTO roomSetDTO;
+        for(RoomUnits hotelRoomSetItem: hotelRooms){
+            roomSetDTO=new RoomUnitsDTO();
             roomSetDTO.setHotelRoomSetId(hotelRoomSetItem.getHotelRoomSetId());
             roomSetDTO.setRoomType(hotelRoomSetItem.getRoomType());
             roomSetDTO.setNumOfRooms(hotelRoomSetItem.getNumOfRooms());

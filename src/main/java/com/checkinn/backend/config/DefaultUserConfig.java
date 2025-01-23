@@ -1,7 +1,7 @@
 package com.checkinn.backend.config;
 
-import com.checkinn.backend.agent.Agent;
-import com.checkinn.backend.agent.AgentRepository;
+import com.checkinn.backend.user.User;
+import com.checkinn.backend.user.UserRepository;
 import com.checkinn.backend.auth.AuthenticationService;
 import com.checkinn.backend.auth.RegisterRequest;
 import org.springframework.boot.CommandLineRunner;
@@ -16,11 +16,11 @@ public class DefaultUserConfig {
     @Bean
     CommandLineRunner clr(
             AuthenticationService service,
-            AgentRepository agentRepository
+            UserRepository agentRepository
     ) {
         return args -> {
 
-            Optional<Agent> defaultAgent = agentRepository.findByUserName("root");
+            Optional<User> defaultAgent = agentRepository.findByUserName("root");
             if (defaultAgent.isEmpty()) {
                 RegisterRequest request = new RegisterRequest();
                 request.setUserName("root");

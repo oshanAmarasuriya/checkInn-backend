@@ -1,6 +1,6 @@
-package com.checkinn.backend.hotel_rooms;
+package com.checkinn.backend.roomunits;
 
-public class RoomSetDTO {
+public class RoomUnitsDTO {
     private long hotelRoomSetId;
     private String roomType;
     private int maxAdults;

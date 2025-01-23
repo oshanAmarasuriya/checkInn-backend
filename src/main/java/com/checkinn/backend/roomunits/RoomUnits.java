@@ -1,11 +1,11 @@
-package com.checkinn.backend.hotel_rooms;
+package com.checkinn.backend.roomunits;
 
-import com.checkinn.backend.hotel.Hotel;
+import com.checkinn.backend.hotelunit.HotelUnit;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="hotel_room_set")
-public class HotelRoomSet {
+public class RoomUnits {
 
     //Fields
     @Id
@@ -14,7 +14,7 @@ public class HotelRoomSet {
 
     @ManyToOne
     @JoinColumn(name="hotel_id")
-    private Hotel hotel; //Reference to Hotel entity
+    private HotelUnit hotel; //Reference to Hotel entity
 
     private String roomType;
     private int maxAdults;
@@ -33,11 +33,11 @@ public class HotelRoomSet {
         this.hotelRoomSetId = hotelRoomSetId;
     }
 
-    public Hotel getHotel() {
+    public HotelUnit getHotel() {
         return hotel;
     }
 
-    public void setHotel(Hotel hotel) {
+    public void setHotel(HotelUnit hotel) {
         this.hotel = hotel;
     }
 

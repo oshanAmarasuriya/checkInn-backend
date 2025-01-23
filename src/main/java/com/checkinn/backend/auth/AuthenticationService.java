@@ -1,8 +1,8 @@
 package com.checkinn.backend.auth;
 
-import com.checkinn.backend.agent.Agent;
-import com.checkinn.backend.agent.AgentRepository;
-import com.checkinn.backend.agent.Role;
+import com.checkinn.backend.user.User;
+import com.checkinn.backend.user.UserRepository;
+import com.checkinn.backend.user.Role;
 import com.checkinn.backend.config.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-    private final AgentRepository repository;
+    private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
@@ -21,7 +21,7 @@ public class AuthenticationService {
 
 
     public AuthenticationResponse register(RegisterRequest request) {
-        var user = Agent.builder()
+        var user = User.builder()
                 .userName(request.getUserName())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.ADMIN)

@@ -1,4 +1,4 @@
-package com.checkinn.backend.contract;
+package com.checkinn.backend.respolicy;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Date;
 import java.util.List;
 
-public interface ContractRepository extends JpaRepository<Contract,Long> {
+public interface ResPolicyRepository extends JpaRepository<ResPolicy,Long> {
     @Query("select c from Contract c where c.endDate<= :expireLimitDate ")
-    List<Contract> findExpiringContracts(Date expireLimitDate);
+    List<ResPolicy> findExpiringContracts(Date expireLimitDate);
 }

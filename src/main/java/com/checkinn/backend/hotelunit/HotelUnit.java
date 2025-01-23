@@ -1,8 +1,8 @@
-package com.checkinn.backend.hotel;
+package com.checkinn.backend.hotelunit;
 
 
-import com.checkinn.backend.contract.Contract;
-import com.checkinn.backend.hotel_rooms.HotelRoomSet;
+import com.checkinn.backend.respolicy.ResPolicy;
+import com.checkinn.backend.roomunits.RoomUnits;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "hotel")
 
-public class Hotel {
+public class HotelUnit {
 
     //fields
     @Id
@@ -20,9 +20,9 @@ public class Hotel {
     private String location;
     private String contact;
     @OneToOne(mappedBy = "hotel")
-    private Contract contract; //Relation to contract
+    private ResPolicy contract; //Relation to contract
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<HotelRoomSet> rooms; //Relation to HotelRoomSet
+    private List<RoomUnits> rooms; //Relation to HotelRoomSet
 
 
 
@@ -58,19 +58,19 @@ public class Hotel {
         this.contact = contact;
     }
 
-    public Contract getContract() {
+    public ResPolicy getContract() {
         return contract;
     }
 
-    public void setContract(Contract contract) {
+    public void setContract(ResPolicy contract) {
         this.contract = contract;
     }
 
-    public List<HotelRoomSet> getRooms() {
+    public List<RoomUnits> getRooms() {
         return rooms;
     }
 
-    public void setRooms(List<HotelRoomSet> rooms) {
+    public void setRooms(List<RoomUnits> rooms) {
         this.rooms = rooms;
     }
 }

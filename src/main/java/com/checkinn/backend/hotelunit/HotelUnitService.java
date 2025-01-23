@@ -1,4 +1,4 @@
-package com.checkinn.backend.hotel;
+package com.checkinn.backend.hotelunit;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,18 +6,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class HotelService {
+public class HotelUnitService {
 
 
-    private HotelRepository hotelRepo;
+    private HotelUnitRepository hotelRepo;
 
     @Autowired
-    public HotelService(HotelRepository hotelRepo) {
+    public HotelUnitService(HotelUnitRepository hotelRepo) {
         this.hotelRepo = hotelRepo;
     }
 
     //Get hotel using hotel id
-    public Hotel getHotelById(long id){
+    public HotelUnit getHotelById(long id){
         return hotelRepo.findById(id).orElse(null);
     }
 
@@ -27,7 +27,7 @@ public class HotelService {
         return "Deleted hotel "+id;
     }
 
-    public List<Hotel> getHotels(){
+    public List<HotelUnit> getHotels(){
         //Get all
         return hotelRepo.findAll();
     }

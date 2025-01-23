@@ -1,4 +1,4 @@
-package com.checkinn.backend.agent;
+package com.checkinn.backend.user;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @Entity
 @Table(name="agent")
-public class Agent implements UserDetails {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +34,7 @@ public class Agent implements UserDetails {
         this.role = role;
     }
 
-    public Agent(String userName, String password) {
+    public User(String userName, String password) {
         this.userName = userName;
         this.password = password;
 

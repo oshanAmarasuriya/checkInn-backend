@@ -1,4 +1,4 @@
-package com.checkinn.backend.hotel;
+package com.checkinn.backend.hotelunit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -6,23 +6,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
 @RequestMapping("api/v1/hotels")
-public class HotelController {
+public class HotelUnitController {
 
-    private final HotelService hotelService;
+    private final HotelUnitService hotelService;
 
     @Autowired
-    public HotelController(HotelService hs){
+    public HotelUnitController(HotelUnitService hs){
         this.hotelService=hs;
     }
 
 
     @GetMapping
-    public List<Hotel> findAllHotels(){
+    public List<HotelUnit> findAllHotels(){
         return  hotelService.getHotels();
     }
 
     @GetMapping("/{id}")
-    public Hotel findHotelById(@PathVariable int id){
+    public HotelUnit findHotelById(@PathVariable int id){
         return hotelService.getHotelById(id);
     }
 
