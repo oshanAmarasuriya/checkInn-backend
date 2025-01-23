@@ -7,6 +7,6 @@ import java.util.Date;
 import java.util.List;
 
 public interface ResPolicyRepository extends JpaRepository<ResPolicy,Long> {
-    @Query("select c from Contract c where c.endDate<= :expireLimitDate ")
+    @Query("select c from Policy c where c.endDate<= :expireLimitDate ")
     List<ResPolicy> findExpiringContracts(Date expireLimitDate);
 }

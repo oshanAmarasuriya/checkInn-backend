@@ -3,7 +3,7 @@ package com.checkinn.backend.roomunits;
 import com.checkinn.backend.hotelunit.HotelUnit;
 import jakarta.persistence.*;
 
-@Entity
+@Entity(name="Rooms")
 @Table(name="hotel_room_set")
 public class RoomUnits {
 

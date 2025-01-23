@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 
-@Entity
-@Table(name = "contract")
+@Entity(name = "Policy")
+@Table(name = "policy")
 public class ResPolicy {
 
     @Id

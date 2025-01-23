@@ -14,7 +14,7 @@ import java.util.Collection;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity(name="agent")
 @Table(name="agent")
 public class User implements UserDetails {
 
