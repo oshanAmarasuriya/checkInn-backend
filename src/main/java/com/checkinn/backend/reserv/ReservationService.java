@@ -21,7 +21,13 @@ public class ReservationService {
         return reservation;
     }
 
+    public List<Reservation> getAll( ){
+        return repo.findAll();
+    }
+
     public List<Reservation> getReservationsByHotelId(Long h_id){
         return repo.findReservByHotelId(h_id);
     }
+
+
 }

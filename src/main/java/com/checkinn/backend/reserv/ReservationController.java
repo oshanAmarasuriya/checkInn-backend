@@ -21,6 +21,10 @@ public class ReservationController {
         return ResponseEntity.ok(createdReservation);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<Reservation>> findAll() {return new ResponseEntity<>(reservationService.getAll(), HttpStatus.OK);}
+
+
     @GetMapping("/byhotel/{id}")
     public ResponseEntity<List<Reservation>> findReservByHotelId(@PathVariable long id) {return new ResponseEntity<>(reservationService.getReservationsByHotelId(id), HttpStatus.OK);}
 }
