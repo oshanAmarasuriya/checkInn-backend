@@ -1,5 +1,6 @@
 package com.checkinn.backend.reserv;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ public class ReservationService {
     @Autowired
     public ReservationService(ReservationRepository repo){this.repo = repo;}
 
+    @Transactional
     public Reservation createReservation(Reservation reservation) {
         // Business logic to handle reservation placement
         repo.save(reservation);
